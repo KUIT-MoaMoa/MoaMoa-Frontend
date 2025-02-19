@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 const PeriodPicker = ({ pickerValue, setPickerValue }) => {
   const date = new Date();
 
-  // 연도 및 월 데이터
   const selections = {
     year: Array.from({ length: 24 }, (_, i) =>
       (i + Number(date.getFullYear()) - 12).toString()
@@ -13,10 +12,8 @@ const PeriodPicker = ({ pickerValue, setPickerValue }) => {
     month: Array.from({ length: 12 }, (_, i) => String(i + 1).padStart(2, "0")),
   };
 
-  // 날짜(day) 값을 동적으로 업데이트하기 위한 상태 변수 추가
   const [days, setDays] = useState([]);
 
-  // 특정 연도와 월에 해당하는 일수 반환
   const getDaysInMonth = (year, month) => {
     if (!year || !month) return [];
     const lastDay = new Date(year, month, 0).getDate();
@@ -30,9 +27,8 @@ const PeriodPicker = ({ pickerValue, setPickerValue }) => {
 
     if (year && month) {
       const updatedDays = getDaysInMonth(year, month);
-      setDays(updatedDays); // ✅ useState로 days 값 업데이트
+      setDays(updatedDays);
 
-      // 현재 선택된 날짜가 유효하지 않다면, 마지막 날짜로 변경
       if (!updatedDays.includes(day)) {
         setPickerValue((prev) => ({
           ...prev,
