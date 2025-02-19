@@ -92,7 +92,7 @@ const PublicChallenge = () => {
                     item={item}
                     onClick={() =>
                       navigate("/challenge/detail", {
-                        state: { selectedChallenge: item },
+                        state: { selectedChallenge: item, isNotStart: true },
                       })
                     }
                   />

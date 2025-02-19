@@ -9,7 +9,7 @@ import { useLocation, useParams } from "react-router-dom";
 const DetailChallenge = () => {
   const pageName = "모으기";
   const location = useLocation();
-  const { selectedChallenge } = location.state;
+  const { selectedChallenge, isNotStart } = location.state;
 
   // 사용자의 챌린지 진행정도
   const [usedRate, setUsedRate] = useState(0);
@@ -29,7 +29,11 @@ const DetailChallenge = () => {
 
       <div className={styles.wrapper}>
         <section>
-          <h3>현재 진행중인 챌린지</h3>
+          {isNotStart ? (
+            <h3>시작 대기중인 챌린지</h3>
+          ) : (
+            <h3>현재 진행중인 챌린지</h3>
+          )}
           <ChallengeCard
             allData={selectedChallenge}
             isDetailChallenge={true}
